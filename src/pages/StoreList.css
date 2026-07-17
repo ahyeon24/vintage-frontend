@@ -1,0 +1,16 @@
+.store-list {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.store-list__title {
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.store-list__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

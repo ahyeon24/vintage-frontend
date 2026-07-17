@@ -1,0 +1,70 @@
+.store-card {
+    display: flex;
+    gap: 14px;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.store-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.store-card__thumbnail {
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    border-radius: 8px;
+    background: #e4e4e4;
+}
+
+.store-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.store-card__name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.store-card__address {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.store-card__price {
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.store-card__price--low {
+    background: #e6f4ea;
+    color: #2e7d32;
+}
+
+.store-card__price--mid {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.store-card__price--high {
+    background: #fdecea;
+    color: #c62828;
+}

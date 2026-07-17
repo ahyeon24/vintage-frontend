@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import StoreCard from '../components/StoreCard';
+import './StoreList.css';
 
 interface Store {
     id: number;
@@ -18,17 +19,13 @@ function StoreList() {
     }, []);
 
     return (
-        <div>
-            <h1>내주변 매장</h1>
-            <ul>
+        <div className="store-list">
+            <h1 className="store-list__title">내주변 매장</h1>
+            <div className="store-list__grid">
                 {stores.map((store) => (
-                    <li key={store.id}>
-                        <Link to={`/stores/${store.id}`}>
-                            {store.name} - {store.address} ({store.priceTier})
-                        </Link>
-                    </li>
+                    <StoreCard key={store.id} store={store} />
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }
