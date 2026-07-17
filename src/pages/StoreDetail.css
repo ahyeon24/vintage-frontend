@@ -1,0 +1,159 @@
+.store-detail {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.store-detail__loading {
+    padding: 40px;
+    text-align: center;
+    color: #888;
+}
+
+.store-detail__back {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+}
+
+.store-detail__back:hover {
+    color: #333;
+}
+
+.store-detail__card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.store-detail__thumbnail {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    background: #e4e4e4;
+    margin-bottom: 16px;
+}
+
+.store-detail__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.store-detail__name {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.store-detail__price {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.store-detail__price--low {
+    background: #e6f4ea;
+    color: #2e7d32;
+}
+
+.store-detail__price--mid {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.store-detail__price--high {
+    background: #fdecea;
+    color: #c62828;
+}
+
+.store-detail__address {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 16px;
+}
+
+.store-detail__info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.store-detail__info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.store-detail__info-label {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.store-detail__info-value {
+    font-size: 14px;
+    color: #333;
+}
+
+.store-detail__badge {
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #ede7f6;
+    color: #5e35b1;
+}
+
+.store-detail__reviews {
+    margin-top: 28px;
+}
+
+.store-detail__reviews-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.store-detail__reviews-empty {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.store-detail__review-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.store-detail__review-item {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.store-detail__review-rating {
+    color: #f5a623;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.store-detail__review-comment {
+    font-size: 14px;
+    margin: 0 0 6px;
+}
+
+.store-detail__review-date {
+    font-size: 12px;
+    color: #aaa;
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import './StoreDetail.css';
 
 interface Store {
     id: number;
@@ -18,6 +19,12 @@ interface Review {
     createdAt: string;
 }
 
+const priceTierLabel: Record<string, string> = {
+    LOW: '저가',
+    MID: '중가',
+    HIGH: '고가',
+};
+
 function StoreDetail() {
     const { id } = useParams();
     const [store, setStore] = useState<Store | null>(null);
@@ -34,30 +41,61 @@ function StoreDetail() {
     }, [id]);
 
     if (!store) {
-        return <div>로딩 중...</div>;
+        return <div className="store-detail__loading">로딩 중...</div>;
     }
 
     return (
-        <div>
-            <h1>{store.name}</h1>
-            <p>주소: {store.address}</p>
-            <p>가격대: {store.priceTier}</p>
-            <p>영업시간: {store.openHours}</p>
-            <p>휴무일: {store.closedDays}</p>
-            <p>무인매장: {store.isUnmanned ? '예' : '아니오'}</p>
+        <div className="store-detail">
+            <Link to="/" className="store-detail__back">← 목록으로</Link>
 
-            <h2>리뷰 ({reviews.length})</h2>
-            {reviews.length === 0 ? (
-                <p>아직 리뷰가 없어요.</p>
-            ) : (
-                <ul>
-                    {reviews.map((review) => (
-                        <li key={review.id}>
-                            ⭐ {review.rating} - {review.comment}
-                        </li>
-                    ))}
-                </ul>
-            )}
+            <div className="store-detail__card">
+                <div className="store-detail__thumbnail" />
+
+                <div className="store-detail__header">
+                    <h1 className="store-detail__name">{store.name}</h1>
+                    <span className={`store-detail__price store-detail__price--${store.priceTier.toLowerCase()}`}>
+              {priceTierLabel[store.priceTier] ?? store.priceTier}
+            </span>
+                </div>
+
+                <p className="store-detail__address">{store.address}</p>
+
+                <div className="store-detail__info-grid">
+                    <div className="store-detail__info-item">
+                        <span className="store-detail__info-label">영업시간</span>
+                        <span className="store-detail__info-value">{store.openHours || '정보 없음'}</span>
+                    </div>
+                    <div className="store-detail__info-item">
+                        <span className="store-detail__info-label">휴무일</span>
+                        <span className="store-detail__info-value">{store.closedDays || '정보 없음'}</span>
+                    </div>
+                    {store.isUnmanned && (
+                        <div className="store-detail__badge">무인 매장</div>
+                    )}
+                </div>
+            </div>
+
+            <div className="store-detail__reviews">
+                <h2 className="store-detail__reviews-title">리뷰 ({reviews.length})</h2>
+
+                {reviews.length === 0 ? (
+                    <p className="store-detail__reviews-empty">아직 리뷰가 없어요.</p>
+                ) : (
+                    <ul className="store-detail__review-list">
+                        {reviews.map((review) => (
+                            <li key={review.id} className="store-detail__review-item">
+                                <div className="store-detail__review-rating">
+                                    {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                                </div>
+                                <p className="store-detail__review-comment">{review.comment}</p>
+                                <span className="store-detail__review-date">
+                        {review.createdAt.slice(0, 10)}
+                      </span>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
         </div>
     );
 }
