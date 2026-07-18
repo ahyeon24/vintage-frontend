@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import StoreCard from '../components/StoreCard';
 import BottomNav from '../components/BottomNav';
 import './Home.css';
@@ -24,8 +23,6 @@ function Home() {
             .then((res) => res.json())
             .then((data) => setStores(data));
     }, []);
-
-    const featured = stores[0] ?? null;
 
     const filteredStores = useMemo(() => {
         return stores.filter((store) => {
@@ -70,24 +67,6 @@ function Home() {
                     </button>
                 ))}
             </div>
-
-            {featured && !searchTerm && !selectedTag && (
-                <section className="home__section">
-                    <h2 className="home__section-title">이주의 발견</h2>
-                    <Link to={`/stores/${featured.id}`} className="home__hero">
-                        <div className="home__hero-thumbnail" />
-                        <div className="home__hero-body">
-                            <p className="home__hero-eyebrow">간판도 없이, 골목 안쪽에서</p>
-                            <p className="home__hero-name">{featured.name}</p>
-                            <p className="home__hero-desc">
-                                아는 사람만 찾아오는 행궁동 골목의 숨은 빈티지 창고.
-                                입소문으로만 퍼진 이곳을 소개합니다.
-                            </p>
-                            <span className="home__hero-cta">발견하기 →</span>
-                        </div>
-                    </Link>
-                </section>
-            )}
 
             <section className="home__section">
                 <h2 className="home__section-title">새로 발견된 매장</h2>
