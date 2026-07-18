@@ -10,8 +10,8 @@ interface Store {
     id: number;
     name: string;
     address: string;
-    latitude: number | null;
-    longitude: number | null;
+    latitude?: number | null;
+    longitude?: number | null;
 }
 
 interface KakaoMapProps {
@@ -20,8 +20,8 @@ interface KakaoMapProps {
     onMarkerClick?: (storeId: number) => void;
 }
 
-const HAENGGUNG_LAT = 37.2790;
-const HAENGGUNG_LNG = 127.0098;
+const HAENGGUNG_LAT = 37.2851;
+const HAENGGUNG_LNG = 127.0136;
 
 function KakaoMap({ stores, level = 4, onMarkerClick }: KakaoMapProps) {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -30,15 +30,14 @@ function KakaoMap({ stores, level = 4, onMarkerClick }: KakaoMapProps) {
 
     useEffect(() => {
         if (document.getElementById('kakao-map-sdk')) {
-            if (window.kakao?.maps) {
-                initMap();
-            }
+            if (window.kakao?.maps) initMap();
             return;
         }
 
         const script = document.createElement('script');
         script.id = 'kakao-map-sdk';
-        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_KAKAO_MAP_KEY}&autoload=false`;
+        // services 라이브러리 포함 (Geocoder 사용)
+        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_KAKAO_MAP_KEY}&autoload=false&libraries=services`;
         script.onload = initMap;
         script.onerror = () => setError(true);
         document.head.appendChild(script);
@@ -51,20 +50,13 @@ function KakaoMap({ stores, level = 4, onMarkerClick }: KakaoMapProps) {
     }, [stores]);
 
     function initMap() {
-        if (!window.kakao?.maps) {
-            setError(true);
-            return;
-        }
+        if (!window.kakao?.maps) { setError(true); return; }
 
         window.kakao.maps.load(() => {
             if (!containerRef.current) return;
 
-            const firstStore = stores.find(s => s.latitude && s.longitude);
-            const centerLat = firstStore?.latitude ?? HAENGGUNG_LAT;
-            const centerLng = firstStore?.longitude ?? HAENGGUNG_LNG;
-            const center = new window.kakao.maps.LatLng(centerLat, centerLng);
             const map = new window.kakao.maps.Map(containerRef.current, {
-                center,
+                center: new window.kakao.maps.LatLng(HAENGGUNG_LAT, HAENGGUNG_LNG),
                 level,
             });
             mapRef.current = map;
@@ -76,33 +68,41 @@ function KakaoMap({ stores, level = 4, onMarkerClick }: KakaoMapProps) {
         const map = mapRef.current;
         if (!map || !window.kakao?.maps) return;
 
-        stores
-            .filter(s => s.latitude && s.longitude)
-            .forEach(store => {
-                const position = new window.kakao.maps.LatLng(store.latitude!, store.longitude!);
-
-                const content = document.createElement('div');
-                content.style.cssText = `
-                    background:#9c4a2e;color:#fff;
-                    padding:5px 10px;border-radius:20px;
-                    font-size:11px;font-weight:700;
-                    white-space:nowrap;cursor:pointer;
-                    box-shadow:0 2px 6px rgba(0,0,0,0.2);
-                    font-family:-apple-system,sans-serif;
-                `;
-                content.textContent = store.name;
-                content.addEventListener('click', () => {
-                    onMarkerClick?.(store.id);
-                    map.panTo(position);
+        stores.forEach(store => {
+            if (store.latitude && store.longitude) {
+                // 매장 등록 시 사장님이 직접 제공한 좌표
+                placeMarker(map, store, store.latitude, store.longitude);
+            } else if (store.address) {
+                // 주소 → 좌표 런타임 변환 (카카오 Geocoder)
+                const geocoder = new window.kakao.maps.services.Geocoder();
+                geocoder.addressSearch(store.address, (result: any[], status: string) => {
+                    if (status === window.kakao.maps.services.Status.OK) {
+                        placeMarker(map, store, parseFloat(result[0].y), parseFloat(result[0].x));
+                    }
                 });
+            }
+        });
+    }
 
-                new window.kakao.maps.CustomOverlay({
-                    position,
-                    content,
-                    map,
-                    yAnchor: 1.4,
-                });
-            });
+    function placeMarker(map: any, store: Store, lat: number, lng: number) {
+        const position = new window.kakao.maps.LatLng(lat, lng);
+
+        const content = document.createElement('div');
+        content.style.cssText = `
+            background:#9c4a2e;color:#fff;
+            padding:5px 10px;border-radius:20px;
+            font-size:11px;font-weight:700;
+            white-space:nowrap;cursor:pointer;
+            box-shadow:0 2px 6px rgba(0,0,0,0.2);
+            font-family:-apple-system,sans-serif;
+        `;
+        content.textContent = store.name;
+        content.addEventListener('click', () => {
+            onMarkerClick?.(store.id);
+            map.panTo(position);
+        });
+
+        new window.kakao.maps.CustomOverlay({ position, content, map, yAnchor: 1.4 });
     }
 
     if (error) {
