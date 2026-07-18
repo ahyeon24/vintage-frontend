@@ -5,6 +5,7 @@ import StoreDetail from './pages/StoreDetail';
 import Saved from './pages/Saved';
 import Nearby from './pages/Nearby';
 import MyPage from './pages/MyPage';
+import ReportStore from './pages/ReportStore';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/saved" element={<Saved />} />
             <Route path="/nearby" element={<Nearby />} />
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="/report" element={<ReportStore />} />
         </Routes>
     );
 }

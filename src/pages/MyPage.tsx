@@ -6,6 +6,7 @@ const MENU_ITEMS = [
     { label: '프로필 수정', to: '/mypage/edit' },
     { label: '내가 쓴 리뷰', to: '/mypage/reviews' },
     { label: '내가 제보한 매장', to: '/mypage/reported' },
+    { label: '매장 제보하기', to: '/report' },
 ];
 
 const SETTINGS_ITEMS = [
