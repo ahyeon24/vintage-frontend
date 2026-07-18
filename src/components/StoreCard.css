@@ -1,9 +1,10 @@
 .store-card {
     display: flex;
+    align-items: center;
     gap: 14px;
-    padding: 12px;
+    padding: 12px 14px;
     background: #fff;
-    border: 1px solid #eee;
+    border-left: 4px solid #9c4a2e;
     border-radius: 12px;
     text-decoration: none;
     color: inherit;
@@ -16,66 +17,59 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+.store-card__rank {
+    flex-shrink: 0;
+    font-size: 20px;
+    font-weight: 800;
+    width: 24px;
+    text-align: center;
+}
+
 .store-card__thumbnail {
     flex-shrink: 0;
-    width: 72px;
-    height: 72px;
+    width: 68px;
+    height: 68px;
     border-radius: 8px;
-    background: #e4e4e4;
+    background: #e4ddd4;
 }
 
 .store-card__info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
     min-width: 0;
 }
 
 .store-card__name {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .store-card__address {
-    font-size: 13px;
-    color: #888;
+    font-size: 12px;
+    color: #8a8272;
     margin: 0;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+}
+
+.store-card__tags {
+    font-size: 12px;
+    font-weight: 500;
+    margin: 2px 0;
 }
 
 .store-card__price {
     align-self: flex-start;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 11px;
+    font-weight: 600;
     padding: 2px 8px;
     border-radius: 20px;
-}
-
-.store-card__price--low {
-    background: #e6f4ea;
-    color: #2e7d32;
-}
-
-.store-card__price--mid {
-    background: #fff3e0;
-    color: #e65100;
-}
-
-.store-card__price--high {
-    background: #fdecea;
-    color: #c62828;
-}
-
-.store-card__tags {
-    font-size: 0.8rem;
-    color: #9c4a2e;
-    margin: 2px 0 6px;
-}
-
-.store-card__tag {
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    background: #f0ebe3;
+    color: #5a4a3a;
 }

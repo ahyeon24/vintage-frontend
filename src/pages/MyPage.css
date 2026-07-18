@@ -1,0 +1,90 @@
+.mypage {
+    padding: 28px 18px 100px;
+    min-height: 100svh;
+}
+
+.mypage__title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+/* 프로필 */
+.mypage__profile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border: 1px solid #ece7df;
+}
+
+.mypage__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #e4ddd4;
+    border: 2px solid #ddd5c7;
+    flex-shrink: 0;
+}
+
+.mypage__nickname {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.mypage__region {
+    font-size: 13px;
+    color: #9c4a2e;
+    font-weight: 500;
+}
+
+/* 메뉴 섹션 */
+.mypage__section {
+    margin-bottom: 12px;
+}
+
+.mypage__menu {
+    list-style: none;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #ece7df;
+}
+
+.mypage__menu li + li {
+    border-top: 1px solid #f4f1ea;
+}
+
+.mypage__menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: #2b2620;
+    font-size: 14px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.12s;
+}
+
+.mypage__menu-item:hover {
+    background: #faf8f5;
+}
+
+.mypage__menu-item--danger {
+    color: #c0392b;
+}
+
+.mypage__menu-arrow {
+    font-size: 18px;
+    color: #ddd5c7;
+}

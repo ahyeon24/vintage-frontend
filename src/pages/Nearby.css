@@ -1,0 +1,106 @@
+.nearby {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 68px;
+}
+
+/* 지도 영역 */
+.nearby__map {
+    position: relative;
+    height: 52svh;
+    background: #d6cfc4;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.nearby__map-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 36px 36px;
+}
+
+.nearby__map-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.nearby__map-pin {
+    font-size: 40px;
+    color: #9c4a2e;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.nearby__map-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2b2620;
+    background: #fff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+.nearby__map-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 10px;
+    color: #a89f8e;
+    background: rgba(255,255,255,0.9);
+    padding: 3px 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd5c7;
+}
+
+/* 바텀 시트 */
+.nearby__sheet {
+    flex: 1;
+    background: #f4f1ea;
+    border-radius: 20px 20px 0 0;
+    margin-top: -20px;
+    padding: 12px 18px 20px;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+    overflow-y: auto;
+}
+
+.nearby__sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: #ddd5c7;
+    border-radius: 2px;
+    margin: 0 auto 18px;
+}
+
+.nearby__sheet-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nearby__sheet-count {
+    font-size: 13px;
+    font-weight: 600;
+    color: #9c4a2e;
+    background: #f4ede8;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.nearby__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

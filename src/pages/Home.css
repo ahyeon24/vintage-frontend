@@ -1,30 +1,27 @@
 .home {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 24px 18px 40px;
-    background-color: #f4f1ea;
-    min-height: 100vh;
-    font-family: 'Noto Sans KR', sans-serif;
-    color: #2b2620;
+    padding: 28px 18px 100px;
+    min-height: 100svh;
 }
 
 .home__greeting {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.45rem;
+    font-weight: 800;
     line-height: 1.4;
-    margin: 0 0 20px;
+    margin-bottom: 20px;
+    color: #2b2620;
 }
 
 .home__search {
     width: 100%;
-    box-sizing: border-box;
-    padding: 12px 16px;
-    border: 1px solid #ddd5c7;
+    padding: 12px 18px;
+    border: 1.5px solid #ddd5c7;
     border-radius: 24px;
-    background-color: #fff;
-    font-size: 0.95rem;
+    background: #fff;
+    font-size: 0.9rem;
+    font-family: inherit;
     outline: none;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+    color: #2b2620;
 }
 
 .home__search:focus {
@@ -33,42 +30,56 @@
 
 .home__tags {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 32px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-bottom: 28px;
+    scrollbar-width: none;
+}
+
+.home__tags::-webkit-scrollbar {
+    display: none;
 }
 
 .home__tag {
-    padding: 8px 16px;
-    border: 1px solid #ddd5c7;
+    flex-shrink: 0;
+    padding: 7px 16px;
+    border: 1.5px solid #ddd5c7;
     border-radius: 20px;
-    background-color: #fff;
+    background: #fff;
     color: #2b2620;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    font-family: inherit;
     cursor: pointer;
-    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+    transition: all 0.15s ease;
 }
 
 .home__tag:hover {
     border-color: #9c4a2e;
+    color: #9c4a2e;
 }
 
 .home__tag--active {
-    background-color: #9c4a2e;
+    background: #9c4a2e;
     border-color: #9c4a2e;
     color: #fff;
 }
 
-.home__section-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin: 0 0 16px;
+.home__section {
+    margin-bottom: 36px;
 }
 
-.home__grid {
+.home__section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #2b2620;
+}
+
+.home__list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .home__empty {
@@ -76,4 +87,61 @@
     font-size: 0.9rem;
     padding: 24px 0;
     text-align: center;
+}
+
+/* 이주의 발견 히어로 카드 */
+.home__hero {
+    display: block;
+    background: #2b2620;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+.home__hero-thumbnail {
+    width: 100%;
+    height: 180px;
+    background: #4a3d32;
+    background-image: repeating-linear-gradient(
+        135deg,
+        #3d3028 0px,
+        #3d3028 1px,
+        transparent 1px,
+        transparent 12px
+    );
+}
+
+.home__hero-body {
+    padding: 18px 20px 20px;
+}
+
+.home__hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #c4a882;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.home__hero-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #f4f1ea;
+    margin-bottom: 8px;
+}
+
+.home__hero-desc {
+    font-size: 0.82rem;
+    color: #a8998a;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+.home__hero-cta {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #c4a882;
+    letter-spacing: 0.04em;
 }

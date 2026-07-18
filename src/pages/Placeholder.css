@@ -1,0 +1,16 @@
+.placeholder {
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f1ea;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+}
+
+.placeholder__text {
+    color: #8a8272;
+    font-size: 0.95rem;
+}
