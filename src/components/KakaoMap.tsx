@@ -16,13 +16,14 @@ interface Store {
 
 interface KakaoMapProps {
     stores: Store[];
+    level?: number;
     onMarkerClick?: (storeId: number) => void;
 }
 
 const HAENGGUNG_LAT = 37.2790;
 const HAENGGUNG_LNG = 127.0098;
 
-function KakaoMap({ stores, onMarkerClick }: KakaoMapProps) {
+function KakaoMap({ stores, level = 4, onMarkerClick }: KakaoMapProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<any>(null);
     const [error, setError] = useState(false);
@@ -58,10 +59,13 @@ function KakaoMap({ stores, onMarkerClick }: KakaoMapProps) {
         window.kakao.maps.load(() => {
             if (!containerRef.current) return;
 
-            const center = new window.kakao.maps.LatLng(HAENGGUNG_LAT, HAENGGUNG_LNG);
+            const firstStore = stores.find(s => s.latitude && s.longitude);
+            const centerLat = firstStore?.latitude ?? HAENGGUNG_LAT;
+            const centerLng = firstStore?.longitude ?? HAENGGUNG_LNG;
+            const center = new window.kakao.maps.LatLng(centerLat, centerLng);
             const map = new window.kakao.maps.Map(containerRef.current, {
                 center,
-                level: 4,
+                level,
             });
             mapRef.current = map;
             addMarkers();

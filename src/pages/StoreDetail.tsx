@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import KakaoMap from '../components/KakaoMap';
 import './StoreDetail.css';
 
 interface Store {
@@ -12,6 +13,8 @@ interface Store {
     isUnmanned: boolean;
     hasCustomRepair: boolean;
     styleTags: string[];
+    latitude: number | null;
+    longitude: number | null;
 }
 
 interface Review {
@@ -124,10 +127,17 @@ function StoreDetail() {
                     )}
                 </div>
 
-                <div className="store-detail__map-placeholder">
-                    <div className="store-detail__map-pin">◎</div>
-                    <p className="store-detail__map-address">{store.address}</p>
-                    <span className="store-detail__map-badge">지도 SDK 연동 예정</span>
+                <div className="store-detail__map">
+                    <KakaoMap
+                        stores={[{
+                            id: store.id,
+                            name: store.name,
+                            address: store.address,
+                            latitude: store.latitude,
+                            longitude: store.longitude,
+                        }]}
+                        level={3}
+                    />
                 </div>
 
                 <div className="store-detail__reviews">
