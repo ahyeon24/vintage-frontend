@@ -68,3 +68,14 @@
     background: #fdecea;
     color: #c62828;
 }
+
+.store-card__tags {
+    font-size: 0.8rem;
+    color: #9c4a2e;
+    margin: 2px 0 6px;
+}
+
+.store-card__tag {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
