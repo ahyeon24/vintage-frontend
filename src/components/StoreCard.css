@@ -17,6 +17,11 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+.store-card--highlighted .store-card {
+    box-shadow: 0 0 0 2px #9c4a2e, 0 4px 12px rgba(156, 74, 46, 0.2);
+    transition: box-shadow 0.2s ease;
+}
+
 .store-card__rank {
     flex-shrink: 0;
     font-size: 20px;

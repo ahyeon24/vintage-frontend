@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import KakaoMap from '../components/KakaoMap';
 import StoreCard from '../components/StoreCard';
 import BottomNav from '../components/BottomNav';
 import './Nearby.css';
@@ -9,10 +10,13 @@ interface Store {
     address: string;
     priceTier: string;
     styleTags: string[];
+    latitude: number | null;
+    longitude: number | null;
 }
 
 function Nearby() {
     const [stores, setStores] = useState<Store[]>([]);
+    const listRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         fetch('http://localhost:8080/api/stores')
@@ -20,18 +24,22 @@ function Nearby() {
             .then((data) => setStores(data));
     }, []);
 
+    const handleMarkerClick = (storeId: number) => {
+        const el = document.getElementById(`store-card-${storeId}`);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            el.classList.add('store-card--highlighted');
+            setTimeout(() => el.classList.remove('store-card--highlighted'), 1500);
+        }
+    };
+
     return (
         <div className="nearby">
             <div className="nearby__map">
-                <div className="nearby__map-grid" />
-                <div className="nearby__map-center">
-                    <div className="nearby__map-pin">◎</div>
-                    <p className="nearby__map-label">행궁동 중심</p>
-                </div>
-                <span className="nearby__map-badge">지도 SDK 연동 예정</span>
+                <KakaoMap stores={stores} onMarkerClick={handleMarkerClick} />
             </div>
 
-            <div className="nearby__sheet">
+            <div className="nearby__sheet" ref={listRef}>
                 <div className="nearby__sheet-handle" />
                 <h2 className="nearby__sheet-title">
                     내 주변 매장
@@ -39,7 +47,9 @@ function Nearby() {
                 </h2>
                 <div className="nearby__list">
                     {stores.map((store) => (
-                        <StoreCard key={store.id} store={store} />
+                        <div key={store.id} id={`store-card-${store.id}`}>
+                            <StoreCard store={store} />
+                        </div>
                     ))}
                 </div>
             </div>
