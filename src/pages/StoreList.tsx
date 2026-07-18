@@ -7,6 +7,7 @@ interface Store {
     name: string;
     address: string;
     priceTier: string;
+    styleTags: string[];
 }
 
 function StoreList() {

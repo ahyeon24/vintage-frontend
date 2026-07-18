@@ -6,6 +6,7 @@ interface Store {
     name: string;
     address: string;
     priceTier: string;
+    styleTags: string[];
 }
 
 interface StoreCardProps {
@@ -25,9 +26,19 @@ function StoreCard({ store }: StoreCardProps) {
             <div className="store-card__info">
                 <h3 className="store-card__name">{store.name}</h3>
                 <p className="store-card__address">{store.address}</p>
+                {store.styleTags.length > 0 && (
+                    <div className="store-card__tags">
+                        {store.styleTags.map((tag, index) => (
+                            <span key={tag}>
+                                {index > 0 && ' · '}
+                                <span className="store-card__tag">{tag}</span>
+                            </span>
+                        ))}
+                    </div>
+                )}
                 <span className={`store-card__price store-card__price--${store.priceTier.toLowerCase()}`}>
-          {priceTierLabel[store.priceTier] ?? store.priceTier}
-        </span>
+                    {priceTierLabel[store.priceTier] ?? store.priceTier}
+                </span>
             </div>
         </Link>
     );
